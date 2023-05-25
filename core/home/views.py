@@ -1,15 +1,18 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.views import View
+from django.views.generic.base import TemplateView, RedirectView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseNotFound
 
 
-@login_required(login_url='login')
-def feed(request):
-    if request.user.is_authenticated:
-	    return render(request, 'dash/home/index.html')
-    return render(request, 'http_codes/page-404.html')
+class FeedView(LoginRequiredMixin, TemplateView):
+    login_url = 'login'
+    template_name = 'dash/home/index.html'
 
-@login_required(login_url='login')
-def redirect_feed(request):
-    if request.user.is_authenticated:
-	    return redirect("feed")
-    return render(request, 'http_codes/page-404.html')
+
+class RedirectFeedView(LoginRequiredMixin, RedirectView):
+    login_url = 'login'
+    pattern_name = 'feed'
+
+
+def page_404(request):
+    return HttpResponseNotFound()

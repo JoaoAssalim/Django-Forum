@@ -4,23 +4,35 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib import messages
+from django.views import View
+from django.views.generic.base import TemplateView, RedirectView
 
-def singup(request):
-    if request.method == 'POST':
+class SignupView(View):
+    template_name = 'dash/signup/index.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
         email = request.POST.get('email')
         name = request.POST.get('name')
         senha = request.POST.get('senha')
         if User.objects.filter(email=email).exists():
             messages.info(request, 'Email already exists!')
-            return redirect('singup')
+            return redirect('signup')
         else:
             user = User.objects.create_user(name, email, senha)
             user.save()
             return redirect('login')
-    return render(request, 'dash/singup/index.html')
 
-def login(request):
-    if request.method == 'POST':
+
+class LoginView(View):
+    template_name = 'dash/login/index.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
         email = request.POST.get('email')
         senha = request.POST.get('senha')
         if User.objects.filter(email=email).exists():
@@ -28,12 +40,14 @@ def login(request):
             user = auth.authenticate(username=nome, password=senha)
             if user is not None:
                 auth.login(request, user)
-                print('Login realizado com sucesso')
                 return redirect('feed')
             else:
                 messages.info(request, 'Email or Password Invalid!')
                 return redirect('login')
         else:
-            messages.info(request, 'User not exists!')
+            messages.info(request, 'User does not exist!')
             return redirect('login')
-    return render(request, 'dash/login/index.html')
+
+
+class ProfileView(TemplateView):
+    template_name = 'dash/profile/index.html'

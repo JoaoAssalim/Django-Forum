@@ -1,7 +1,8 @@
 from django.urls import path
-from . import views
+from .views import *
 
 urlpatterns = [
-    path('', views.redirect_feed, name='redirect_feed'),
-    path('feed/', views.feed, name='feed'),
+    path('', RedirectFeedView.as_view(), name='redirect_feed'),
+    path('feed/', FeedView.as_view(), name='feed'),
+    path('page-404/', page_404, name='page_404'),
 ]
