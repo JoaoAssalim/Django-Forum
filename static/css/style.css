@@ -224,7 +224,8 @@ button {
 }
 
 .logo {
-    width: 40%;
+    width: 30%;
+    margin-top: 90px;
 }
 
 .navbar {
@@ -432,12 +433,12 @@ button {
 .price_text {
     width: 100%;
     float: left;
-    font-size: 30px;
+    font-size: 15px;
     color: #5ca0e9;
     font-weight: 600;
     text-transform: uppercase;
     text-align: center;
-    padding-top: 40px;
+    margin-top: 10px;
 }
 
 .game_text {
@@ -837,14 +838,14 @@ button {
 
 .box_login {
     width: 600px;
-    height: 420px;
+    height: 350px;
     background: #fff;
     padding: 20px;
 }
 
 .box_sing {
     width: 600px;
-    height: 520px;
+    height: 440px;
     background: #fff;
     padding: 20px;
 
