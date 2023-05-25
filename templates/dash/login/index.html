@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 <!-- site metas -->
-<title>Time Limit Excedeed to Coders - Social Media</title>
+<title>Time Limit Excedeed - Forum to Devs</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">	
@@ -38,7 +38,6 @@
       <img src="{% static 'images/logo.png' %}" class="logo">
       <div class="box_login">
         <h1 class="text-info font-weight-bold">Login</h1> 
-        <p>Access Blog TLE to Coders Home Page.</p>
         <form method="post"> 
           {% csrf_token %}
           <label for="email">Email</label>
@@ -49,7 +48,9 @@
            
           <input type="submit" value="Login" class='form-control'/> 
         </form>
+        <a href="{% url 'signup' %}" class='price_text'>Sign Up</a>
 
+      </div>
         {% if messages %}
           {% for m in messages %}
               <div class="alert alert-warning" role="alert">
@@ -57,8 +58,6 @@
               </div>
           {% endfor %}
         {% endif %}
-
-      </div>
     </div>
   <!-- banner section end -->
 

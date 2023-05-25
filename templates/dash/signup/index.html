@@ -31,32 +31,38 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 </head>
 <body>
-    <div class="header_section">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto d-flex align-items-center">
-                <li class="nav-item mx-auto">
-                    <a class="nav-link" href="{% url 'feed' %}">HOME</a>
-                </li>
-                <li class="nav-item mx-auto">
-                    <a class="nav-link" href="{% url 'posts' %}">POST</a>
-                </li>
-                <li class="nav-item mx-auto">
-                    <a class="nav-link" href="{% url 'chat' %}">CHAT</a>
-                </li>
-            </ul>
+  <!-- banner section start -->
+  <div class="login_container">
 
-              <ul class="navbar-nav ml-auto d-flex align-items-center">
-                <li class="nav-item mx-auto">
-                    <a href="{% url 'profile' %}"><img src="{% static 'images/man.png' %}" class="profile-picture"></a>
-                </li>
-              </ul>
-            </div>
-        </nav>
-	</div>
+    <div class="box_center">
+      <img src="{% static 'images/logo.png' %}" class="logo">
+      <div class="box_sing">
+        <h1 class="text-info font-weight-bold">Sing Up</h1> 
+        <form method="post"> 
+          {% csrf_token %}
+          <label for="name">Name</label>
+          <input id="name" name="name" required="required" type="text" class='form-control'/> <br>
 
-    {% block content %}{% endblock %}
+          <label for="email">Email</label>
+          <input id="email" name="email" required="required" type="text" class='form-control'/> <br>
 
+          <label for="senha">Password</label>
+          <input id="senha" name="senha" required="required" type="password" class='form-control'/> <br>
+           
+          <input type="submit" value="Sing Up" class='form-control'/> 
+        </form>
+
+        <a href="{% url 'login' %}" class='price_text'>Login</a>
+
+      </div>
+        {% if messages %}
+          {% for m in messages %}
+              <div class="alert alert-warning" role="alert">
+                {{ m }}
+              </div>
+          {% endfor %}
+        {% endif %}
+    </div>
   <!-- banner section end -->
 
   <!-- Javascript files-->
