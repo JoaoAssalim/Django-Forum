@@ -837,7 +837,14 @@ button {
 
 .box_login {
     width: 600px;
-    height: 500px;
+    height: 420px;
+    background: #fff;
+    padding: 20px;
+}
+
+.box_sing {
+    width: 600px;
+    height: 520px;
     background: #fff;
     padding: 20px;
 

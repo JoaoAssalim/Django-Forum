@@ -4,10 +4,10 @@ from django.urls import path, include
 app_name = "mango"
 
 urlpatterns = [
-    path('', include('core.login.urls')),
-    path('dash/', include('core.home.urls')),
-    path('dash/', include('core.posts.urls')),
-    path('dash/', include('core.chat.urls')),
+    path('', include('core.home.urls')),
+    path('', include('core.posts.urls')),
+    path('', include('core.chat.urls')),
+    path('user/', include('core.login.urls')),
     path('admin/', admin.site.urls),
 ]
 
