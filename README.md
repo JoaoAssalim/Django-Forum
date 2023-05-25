@@ -20,13 +20,7 @@ Com a venv ativa vamos instalar as dependências do projeto que se encontram no 
 ```
 
 ### Migrações
-Para construir as migrações utilizarem o comodando makemigrations e para realizar elas o migrate_schemas.
 ```
   python manage.py makemigrations
   python manage.py migrate_schemas
-```
-
-### JavaScript
-```
-  python manage.py collectstatic --noinput
 ```
