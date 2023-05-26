@@ -5,8 +5,8 @@ app_name = "mango"
 
 urlpatterns = [
     path('', include('core.home.urls')),
-    path('', include('core.posts.urls')),
-    path('', include('core.chat.urls')),
+    path('posts/', include('core.posts.urls')),
+    path('chat/', include('core.chat.urls')),
     path('user/', include('core.login.urls')),
     path('admin/', admin.site.urls),
 ]
