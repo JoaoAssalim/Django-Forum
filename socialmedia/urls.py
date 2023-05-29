@@ -3,6 +3,7 @@ from django.urls import path, include
 
 app_name = "mango"
 
+
 urlpatterns = [
     path('', include('core.home.urls')),
     path('posts/', include('core.posts.urls')),
@@ -10,7 +11,3 @@ urlpatterns = [
     path('user/', include('core.login.urls')),
     path('admin/', admin.site.urls),
 ]
-
-handler403 = 'core.http_codes.views.handler403'
-handler404 = 'core.http_codes.views.handler404'
-handler500 = 'core.http_codes.views.handler500'

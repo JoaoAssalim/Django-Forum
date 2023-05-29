@@ -41,7 +41,8 @@ html {
 }
 
 body {
-     color: #666666;
+    background-color: #eeeeeeb2;
+     color: #424242;
      font-size: 14px;
      font-family:Poppins;
      line-height: 1.80857;
@@ -861,4 +862,169 @@ button {
 
 .profile-picture{
     width: 80px;
+}
+
+.box_post{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#btn-post:hover{
+    background-color: #0059ff;
+    color: #ffffff;
+}
+
+.post_block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #b9b9b9; 
+    margin-bottom: 10px;
+    background-color: #FFF;
+    border-radius: 10px;
+}
+
+.post{
+    background-color: #ffffff;
+    margin: 10px;
+    width: 1300px;
+    padding: 10px;
+}
+
+.logo_post, .logo_post_like{
+    width: 30px;
+}
+
+.like,
+.comment {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.reaction_area {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.reaction_button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+  
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+  
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.post-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+}
+  
+.post-input {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    resize: vertical;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+}
+  
+.logo-modal{
+    width: 50px;
+    margin-top: 5px;
+}
+
+.modal-view{
+    border: 1px solid rgba(87, 87, 87, 0.274);
+    display: flex; 
+    justify-content: center;
+    width: 600px;
+    border-radius: 10px;
+    background-color: #FFF;
+}
+
+.view-border{
+    display: flex; 
+    justify-content: center;
+    margin-top: 20px;
+    height: 100px;
+    align-items: center;
+}
+
+.form-control-post{
+    margin: 10px;
+    display: block;
+    width: 300px;
+    height: 40px;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #b9b9b933;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 20px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+}
+
+.like{
+    width: 400px;
+    justify-content: center;
+    padding: 2px;
+}
+.like:hover{
+    background-color: #c7c7c771;
+    border-radius: 5px;
+    width: 400px;
+}
+.comment{
+    width: 400px;
+    justify-content: center;
+    padding: 2px;
+}
+.comment:hover{
+    background-color: #c7c7c771;
+    border-radius: 5px;
+    width: 400px;
 }

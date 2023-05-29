@@ -1,3 +1,11 @@
 from django.db import models
 
-# Create your models here.
+class Posts(models.Model):
+    name = models.CharField(max_length=100)
+    comment = models.CharField(max_length=256)
+    likes = models.IntegerField(default=0)
+    comments = models.IntegerField(default=0)
+
+class UserLikes(models.Model):
+    user_id = models.IntegerField()
+    likes = models.CharField(max_length=10000)

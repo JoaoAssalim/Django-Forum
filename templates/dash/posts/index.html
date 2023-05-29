@@ -1,5 +1,68 @@
 {% extends 'dash/base.html' %}
+{% load static %}
 
 {% block content %}
-<h1>Posts</h1>
+
+<div class="box_post">
+    <div class='message'>
+        {% if messages %}
+            {% for m in messages %}
+                <div class="alert alert-warning" role="alert">
+                    {{ m }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="view-border">
+        <div class="modal-view">
+            <a href="{% url 'profile' %}"><img src="{% static 'images/man.png' %}" class="logo-modal"></a>
+            <button id="open-modal-btn" class="form-control-post">Start a Post</button>
+        </div>
+    </div>
+    
+    
+    {% for post in data %}
+        <div class="post_block">
+            <div class="post">
+                <a><img src="{% static 'images/man.png'%}" class="logo_post">{{post.name}}</a>
+                <p>{{ post.body }}</p>
+            </div>
+            <hr style="width: 1300px; margin-top: 0; margin-bottom: 5px;">
+            <div class="reaction_area">
+                <div class="like">
+                    {% if post.id in post.user_likes %}
+                        <a class="reaction_button" href="{% url 'like-post' post_id=post.id %}" onclick="reloadTimer()"><img src="{% static 'images/like-colorful.png' %}" class="logo_post"></a>
+                    {% else %}
+                        <a class="reaction_button" href="{% url 'like-post' post_id=post.id %}" onclick="reloadTimer()"><img src="{% static 'images/like-bw.png' %}" class="logo_post"></a>
+                    {% endif %}
+
+                    <p>{{post.likes}} Likes</p>
+                </div>
+                <div class="comment">
+                    <a class="reaction_button">
+                        <img src="{% static 'images/chat.png' %}" class="logo_post">
+                        <p>{{post.comments}} Comments</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form method="POST" action="{% url 'make_post' %}">
+                {% csrf_token %}
+                <textarea class="post-input" id="comment" name="comment" placeholder="Compartilhe sua postagem..."></textarea>
+                <button type="submit" class='form-control' id="btn-post">Post</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
 {% endblock %}
