@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib import messages
 from django.views import View
+from django.contrib.auth.decorators import login_required
 from django.views.generic.base import TemplateView, RedirectView
 
 class SignupView(View):
@@ -48,6 +49,6 @@ class LoginView(View):
             messages.info(request, 'User does not exist!')
             return redirect('login')
 
-
-class ProfileView(TemplateView):
-    template_name = 'dash/profile/index.html'
+@login_required
+def profile(request):
+    return render(request, 'dash/profile/index.html')

@@ -1,6 +1,7 @@
 var openModalBtn = document.getElementById('open-modal-btn');
 var modal = document.getElementById('modal');
 var closeModalBtn = document.getElementsByClassName('close')[0];
+var toggleButtons = document.getElementsByClassName("toggleButton");
 
 openModalBtn.addEventListener('click', function() {
   modal.style.display = 'block';
@@ -15,6 +16,30 @@ window.addEventListener('click', function(event) {
     modal.style.display = 'none';
   }
 });
+
+function openModal(postId) {
+  var modal = document.querySelector("#modal-" + postId);
+  modal.style.display = "block";
+}
+function closeModal(postId) {
+  var modal = document.querySelector("#modal-" + postId);
+  modal.style.display = "none";
+}
+
+
+for (var i = 0; i < toggleButtons.length; i++) {
+  toggleButtons[i].addEventListener("click", function() {
+      var targetId = this.getAttribute("data-target");
+      var contentDiv = document.querySelector(targetId);
+      
+      if (contentDiv.style.display === "none") {
+          contentDiv.style.display = "block";
+      } else {
+          contentDiv.style.display = "none";
+      }
+  });
+}
+
 
 setTimeout(function() {
   var messages = document.getElementsByClassName('message')[0];

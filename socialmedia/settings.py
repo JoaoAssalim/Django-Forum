@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     'core.home',
     'core.login',
     'core.http_codes',
-    'core.chat',
     'core.posts',
 ]
 
@@ -69,15 +68,12 @@ WSGI_APPLICATION = 'socialmedia.wsgi.application'
 
 DATABASES = {  
     'default': {  
-        'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'mango',  
-        'USER': 'root',  
-        'PASSWORD': '',  
-        'HOST': '127.0.0.1',  
-        'PORT': '3306',  
-        'OPTIONS': {  
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
-        }  
+        'ENGINE': 'django.db.backends.postgresql',  
+        'NAME': 'TLEBlog',  
+        'USER': 'postgres',  
+        'PASSWORD': '0109',  
+        'HOST': 'localhost',  
+        'PORT': '5432',  
     }  
 }  
 

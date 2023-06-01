@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 import requests
 import json
-from core.posts.models import Posts, UserLikes
+from core.posts.models import Posts, UserLikes, UserComments
 from django.db.models import F
 
 def read_posts(id):
@@ -22,9 +22,29 @@ def read_posts(id):
 
     likes = [int(i) for i in likes]
 
+    comments = UserComments.objects.all()
+    comment = []
+    for i in comments:
+        comment.append({'id': i.comment_id ,'comment': i.comment, 'name': i.name})
+
     for post in posts:
-        context.append({"id": post.id, "name": post.name, "body":post.comment, "likes": post.likes, "user_likes": likes, "comments": post.comments})
+        context.append({"id": post.id, "name": post.name, "body":post.comment, "likes": post.likes, "user_likes": likes, "user_comments": post.comments, "comments": comment})
     return context
+
+def make_comment(request, id):
+    if request.method == 'POST':
+        comment = request.POST.get('comment-post') 
+        if len(comment) >= 3:
+            comment = UserComments(comment_id=id, name=request.user.username, comment=comment)
+            comment.save()
+            posts = Posts.objects.get(id=id)
+            posts.comments = F("comments") + 1
+            posts.save()
+            return redirect('posts')
+        else:
+            messages.error(request, 'Comentario Precisa Ter Pelo Menos 3 caracteres! Por Favor, refaça o comentario!')
+            return redirect('posts')
+    return redirect('posts')
 
 def make_post(request):
     if request.method == 'POST':
@@ -37,7 +57,6 @@ def make_post(request):
             messages.error(request, 'Publicação Precisa Ter Pelo Menos 3 caracteres! Por Favor, refaça a publicação!')
             return redirect('posts')
     return redirect('posts')
-
 
 def like_post(request, post_id):
     likes = UserLikes.objects.all()

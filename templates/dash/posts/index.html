@@ -25,10 +25,10 @@
     {% for post in data %}
         <div class="post_block">
             <div class="post">
-                <a><img src="{% static 'images/man.png'%}" class="logo_post">{{post.name}}</a>
-                <p>{{ post.body }}</p>
+                <a><img src="{% static 'images/man.png'%}" class="logo_post_profile">{{post.name}}</a>
+                <p class="text-post">{{ post.body }}</p>
             </div>
-            <hr style="width: 1300px; margin-top: 0; margin-bottom: 5px;">
+            <hr class="divisor-body">
             <div class="reaction_area">
                 <div class="like">
                     {% if post.id in post.user_likes %}
@@ -40,13 +40,47 @@
                     <p>{{post.likes}} Likes</p>
                 </div>
                 <div class="comment">
-                    <a class="reaction_button">
+                    <a class="reaction_button toggleButton" data-target="#contentDiv-{{ post.id }}">
                         <img src="{% static 'images/chat.png' %}" class="logo_post">
-                        <p>{{post.comments}} Comments</p>
+                        <p>{{post.user_comments}} Comments</p>
                     </a>
                 </div>
             </div>
+            
+            <div id="contentDiv-{{ post.id }}" class="contentDiv">
+                <div class="header-comment">
+                    {% if post.user_comments > 0 %}
+                        <h3 class="title-comment">Comments:</h3>
+                    {% endif %}
+                    <button id="open-modal-comment-{{ post.id }}" class="form-control-comment" onclick="openModal('{{ post.id }}')"><img src="{% static 'images/plus.png' %}" width="20px"> Create Comment</button>
+                </div>
+                
+                    {% for p in post.comments %}
+                        {% if p.id == post.id %}
+                            <div class="profile-comment">
+                                <div class="post">
+                                    <a><img src="{% static 'images/man.png'%}" class="logo_post_profile">{{p.name}}</a>
+                                    <p class="text-post">{{ p.comment }}</p>
+                                </div>
+                            </div>
+                            <hr class="divisor-body">
+                        {% endif %}
+                    {% endfor %}
+            </div>
         </div>
+
+        <div id="modal-{{ post.id }}" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeModal('{{ post.id }}')">&times;</span>
+                <form method="POST" action="{% url 'make_comment' id=post.id %}">
+                    {% csrf_token %}
+                    <textarea class="post-input" id="comment-post" name="comment-post" placeholder="Faça seu comentario..."></textarea>
+                    <button type="submit" class='form-control' id="btn-post">Comment</button>
+                </form>
+                
+            </div>
+        </div>
+
     {% endfor %}
 </div>
 
