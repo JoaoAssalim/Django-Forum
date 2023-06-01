@@ -1,4 +1,4 @@
-# Time Limit Excedeed to Coders - Social Media
+# Time Limit Excedeed Forum to Devs - Social Media
 
 ## Configuração do sistema.
 Esse tópico da documentação tem como objetivo realizar a configuração do sistema para o ambiente de desenvolvimento.
